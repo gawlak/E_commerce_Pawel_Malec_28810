@@ -1,3 +1,4 @@
+import { CartComponent } from './components/cart/cart.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +10,9 @@ import { LandingComponent } from './components/landing/landing.component';
 import { ProductsComponent } from './components/products/products.component';
 import { PanelTopComponent } from './components/panel-top/panel-top.component';
 
+
 const appRoutes: Routes = [
+  { path: 'cart', component: CartComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'landing', component: LandingComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' }
@@ -20,7 +23,8 @@ const appRoutes: Routes = [
     AppComponent,
     LandingComponent,
     ProductsComponent,
-    PanelTopComponent
+    PanelTopComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
