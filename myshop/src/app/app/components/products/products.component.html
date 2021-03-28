@@ -1,0 +1,32 @@
+<app-panel-top></app-panel-top>
+
+<button routerLink="/landing">Powrót</button>
+
+<div class="products">
+    <table style="margin:0 auto;">
+        <thead>
+            <tr>
+                <th>obrazek</th>
+                <th>dane</th>
+                <th>akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let a of [1,2,3,4,5]">
+                <tr style="background-color: whitesmoke;">
+                    <td><img src="{{this.mainService.products?.thumbnail}}" alt=""></td>
+                    <td>
+                        <ul>
+                            <li>Tytuł: Tytuł aplikacji</li>
+                            <li>Cena: Cena produktu</li>
+                            <li>Kategoria: Kategoria produktu</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <button>Do koszyka</button>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
