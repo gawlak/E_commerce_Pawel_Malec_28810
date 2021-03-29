@@ -1,47 +1,52 @@
 <app-panel-top></app-panel-top>
 <div class="products">
- <table style="margin:0 auto;" id="cartTable">
- <thead *ngIf="this.mainService.products">
- <tr>
- <th>obrazek</th>
- <th>dane</th>
- </tr>
- </thead>
- <tbody>
- <ng-container *ngFor="let object of this.mainService.cart">
- <tr style="background-color: whitesmoke;">
- <td><img src="{{object.product.thumbnail}}" alt=""></td>
- <td>
- <ul>
-      <li>Tytuł: {{object.product.title}}</li>
-      <li>Cena: {{object.product.price}}</li>
-      <li>Kategoria: {{object.product.category}}</li>
- </ul>
- </td>
- </tr>
- </ng-container>
- </tbody>
- </table>
- <div class="summary">
-    <p>Do zapłaty: {{getCartPrice()}}</p>
- </div>
- <div class="payment">
- <div id="paypal">
-  <img src="https://www.kartyonline.pl/wp-content/uploads/paypal-logo.jpg" alt="paypal"
-  style="width:100px;height:100px;">
- </div>
- <form action="http://www.jakubadamus.cba.pl/paypal.php" method="get" #paymentForm>
- <tr><input type="text" #firstName name="firstName" id="" placeholder="Imie"></tr>
- <tr><input type="text" #lastName name="lastName" id="" placeholder="Nazwisko"></tr>
- <tr><input type="text" #email name="email" id="" placeholder="Email"></tr>
- <tr><input type="text" name="phone" id="" placeholder="Telefon"></tr>
- <ng-container *ngFor="let object of this.mainService.cart">
- <input type="hidden" name="products[]" value="{{ object | json }}">
- </ng-container>
- <label for="">Akceptuję regulamin:
- <input #regulamin type="checkbox" name="aggrement" id="" (change)="0">
- </label>
- <button [disabled]="!regulamin.checked" (click)="paymentForm.submit()">Kup</button>
- </form>
- </div>
+    <table style="margin:0 auto;" id="cartTable">
+        <thead *ngIf="this.mainService.products">
+            <tr>
+                <th>obrazek</th>
+                <th>dane</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let object of this.mainService.cart">
+                <tr style="background-color: whitesmoke;">
+                    <td><img src="{{object.product.thumbnail}}" alt=""></td>
+                    <td>
+                        <ul>
+                            <li>Tytuł: {{object.product.title}}</li>
+                            <li>Cena: {{object.product.price}}</li>
+                            <li>Kategoria: {{object.product.category}}</li>
+                        </ul>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+    <div class="summary">
+        <p>Do zapłaty: {{getCartPrice()}}</p>
+    </div>
+    <div class="payment">
+        <div id="paypal">
+
+          <img src="https://www.kartyonline.pl/wp-content/uploads/paypal-logo.jpg" alt="paypal" style="width:100px;height:100px;"/>
+          <img src="https://resources.mynewsdesk.com/image/upload/oeb5fz6yafjdfm9yehbe.jpg" alt="visa" style="width:100px;height:100px;">
+          <img src="https://www.mastercard.pl/content/dam/mccom/global/logos/logo-mastercard-mobile.svg" alt="visa" style="width:100px;height:100px;">
+          <img src="https://ocdn.eu/images/pulscms/MWE7MDA_/a451d8d5-4c29-4f45-b402-99aa34fffe0d.png" alt="visa" style="width:100px;height:100px;">
+          <img src="https://www.tanie-konto.pl/wp-content/uploads/apple-pay-logo.png" alt="visa" style="width:100px;height:100px;">
+        </div>
+
+        <form action="http://www.jakubadamus.cba.pl/paypal.php" method="get" #paymentForm>
+            <input type="text" #firstName name="firstName" id="" placeholder="Imie">
+            <input type="text" #lastName name="lastName" id="" placeholder="Nazwisko">
+            <input type="text" #email name="email" id="" placeholder="Email">
+            <input type="text" name="phone" id="" placeholder="Telefon">
+            <ng-container *ngFor="let object of this.mainService.cart">
+                <input type="hidden" name="products[]" value="{{ object | json }}">
+            </ng-container>
+            <label for="">Akceptuję regulamin:
+              <input #regulamin type="checkbox" name="aggrement" id="" (change)="0">
+            </label>
+            <button [disabled]="!regulamin.checked" (click)="paymentForm.submit()">Kup</button>
+        </form>
+    </div>
 </div>
